@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Details - DressAI</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+    <h1>
+        <img src="{% static 'images/logo.png' %}" alt="DressAI Logo">
+    </h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'upload_image' %}">Search</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main-content">
+    <h2>Product Details</h2>
+    <div class="product-details">
+        <img src="{{ product.image }}" alt="Product Image" width="200">
+        <div class="item-details">
+            <p><strong>Product Name:</strong> {{ product.data.productDisplayName|default:"N/A" }}</p>
+            <p><strong>Price:</strong> ${{ product.data.price|default:"N/A" }}</p>
+            <p><strong>Brand:</strong> {{ product.data.brandName|default:"N/A" }}</p>
+            <p><strong>Base Colour:</strong> {{ product.data.baseColour|default:"N/A" }}</p>
+            <p><strong>Season:</strong> {{ product.data.season|default:"N/A" }} {{ product.data.year|default:"N/A" }}</p>
+            <p><strong>Usage:</strong> {{ product.data.usage|default:"N/A" }}</p>
+            <p><strong>Pattern:</strong> {{ product.data.articleAttributes.Pattern|default:"N/A" }}</p>
+            <p><strong>Sleeve Length:</strong> {{ product.data.articleAttributes.Sleeve_Length|default:"N/A" }}</p>
+            <p><strong>Neck:</strong> {{ product.data.articleAttributes.Neck|default:"N/A" }}</p>
+            <p><strong>Fit:</strong> {{ product.data.articleAttributes.Fit|default:"N/A" }}</p>
+            <p><strong>Occasion:</strong> {{ product.data.articleAttributes.Occasion|default:"N/A" }}</p>
+            <p><strong>Fabric:</strong> {{ product.data.articleAttributes.Fabric|default:"N/A" }}</p>
+            <p><strong>Surface Styling:</strong> {{ product.data.articleAttributes.Surface_Styling|default:"N/A" }}</p>
+            <p><strong>Pattern Coverage:</strong> {{ product.data.articleAttributes.Pattern_Coverage|default:"N/A" }}</p>
+            <p><strong>Description:</strong> {{ product.data.productDescriptors.description.value|safe|default:"N/A" }}</p>
+            <p><strong>Care:</strong> {{ product.data.productDescriptors.materials_care_desc.value|safe|default:"N/A" }}</p>
+            <p><strong>Size Fit:</strong> {{ product.data.productDescriptors.size_fit_desc.value|safe|default:"N/A" }}</p>
+            <p><strong>Style Note:</strong> {{ product.data.productDescriptors.style_note.value|safe|default:"N/A" }}</p>
+            <!-- Add more properties here as needed -->
+        </div>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 DressAI. All rights reserved.</p>
+</footer>
+</body>
+</html>

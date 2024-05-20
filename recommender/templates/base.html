@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DressAI</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="DressAI Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'upload_image' %}">Fashion Recommender</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li>
+                <form method="GET" action="{% url 'search' %}">
+                    <input type="text" name="q" placeholder="Search for products...">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<footer>
+    <p>&copy; 2024 DressAI. All rights reserved.</p>
+</footer>
+</body>
+</html>

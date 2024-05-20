@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DressAI - Recommendations</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+    <h1>
+        <img src="{% static 'images/logo.png' %}" alt="DressAI Logo">
+    </h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'upload_image' %}">Search</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main-content">
+    <h2>Uploaded Image</h2>
+    <img src="{{ uploaded_file_url }}" alt="Uploaded Image" width="200">
+    <h2>Recommended Items</h2>
+    <div class="grid-container">
+        {% for rec in recommendations %}
+        <div class="grid-item">
+            <img src="{{ rec.image }}" alt="Recommended Item" class="product-image">
+            <div class="item-details">
+                <p><strong>Product Name:</strong> {{ rec.data.productDisplayName|default:"N/A" }}</p>
+                <p><strong>Price:</strong> ${{ rec.data.price|default:"N/A" }}</p>
+                <p><strong>Brand:</strong> {{ rec.data.brandName|default:"N/A" }}</p>
+                <p><strong>Base Colour:</strong> {{ rec.data.baseColour|default:"N/A" }}</p>
+                <p><strong>Season:</strong> {{ rec.data.season|default:"N/A" }} {{ rec.data.year|default:"N/A" }}</p>
+                <p><strong>Usage:</strong> {{ rec.data.usage|default:"N/A" }}</p>
+                <p><strong>Sleeve Styling:</strong> {{ rec.data.articleAttributes.Sleeve_Styling|default:"N/A" }}</p>
+                <p><strong>Neck:</strong> {{ rec.data.articleAttributes.Neck|default:"N/A" }}</p>
+                <p><strong>Fit:</strong> {{ rec.data.articleAttributes.Fit|default:"N/A" }}</p>
+                <!-- Add more properties here as needed -->
+                <button class="details-button" onclick="window.location.href='{% url 'product_details' rec.image_name %}'">Product Details</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 DressAI. All rights reserved.</p>
+</footer>
+</body>
+</html>
